@@ -16,7 +16,7 @@ annoDir="/srv/gsfs0/projects/snyder/chappell/Annotations/GENCODE-v19-GRCh37-hg19
 ##### create a tempscript for queue sub
 cat > $NAME.tempscript.sh << EOF
 #!/bin/bash
-#$ -N $NAME.Index_Stat
+#$ -N $NAME.flagstat
 #$ -j y
 #$ -V
 #$ -cwd
