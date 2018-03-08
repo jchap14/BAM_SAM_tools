@@ -32,11 +32,11 @@ touch $NAME.lineCount
 echo "count the # of alignments in each BAM"
 for line in \`cat $BAMLIST\`
 do
-    samtools flagstat \$line > flagstat.TEMP
-    cat flagstat.TEMP | egrep "read1" | cut -f1 -d ' ' >> $NAME.lineCount 
+    samtools flagstat \$line > $NAME.flagstat.TEMP
+    cat $NAME.flagstat.TEMP | egrep "read1" | cut -f1 -d ' ' >> $NAME.lineCount 
 done
 ## remove TEMP file
-rm flagstat.TEMP
+rm $NAME.flagstat.TEMP
 ## find the BAM with the lowest # & set it as a variable
 echo "find the BAM with the lowest # & set it as a variable"
 MIN=\`cat $NAME.lineCount | sort -n | head -1\`
