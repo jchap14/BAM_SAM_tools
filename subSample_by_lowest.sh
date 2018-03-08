@@ -46,6 +46,7 @@ for line in \`cat $BAMLIST\`
 do
     NM=\`echo \$line | sed 's:.*/::'\`
     macs2 randsample -t \$line -o \$NM.subSamp.bam -n \$MIN 
+done
 ##
 EOF
 
