@@ -26,16 +26,22 @@ cat > $NAME.tempscript.sh << EOF
 
 ########## Commands
 ## create an empty file called $NAME.lineCount
+echo "create an empty file called $NAME.lineCount"
 touch $NAME.lineCount
 ## count the # of alignments in each BAM
+echo "count the # of alignments in each BAM"
 for line in \`cat $BAMLIST\`
 do
     samtools flagstat \$line > flagstat.TEMP
     cat flagstat.TEMP | egrep "read1" | cut -f1 -d ' ' >> $NAME.lineCount 
 done
+## remove TEMP file
+rm flagstat.TEMP
 ## find the BAM with the lowest # & set it as a variable
+echo "find the BAM with the lowest # & set it as a variable"
 MIN=\`cat $NAME.lineCount | sort -n | head -1\`
 ## subsample each BAM to the MIN # of reads
+echo "subsample each BAM to the MIN # of reads"
 for line in \`cat $BAMLIST\`
 do
     NM=\`echo \$line | sed 's:.*/::'\`
