@@ -30,17 +30,16 @@ touch $NAME.lineCount
 ## count the # of alignments in each BAM
 for line in \`cat $BAMLIST\`
 do
-samtools flagstat \$line > flagstat.TEMP
-cat flagstat.TEMP | egrep "read1" | cut -f1 -d ' ' >> $NAME.lineCount 
+    samtools flagstat \$line > flagstat.TEMP
+    cat flagstat.TEMP | egrep "read1" | cut -f1 -d ' ' >> $NAME.lineCount 
 done
 ## find the BAM with the lowest # & set it as a variable
 MIN=\`cat $NAME.lineCount | sort -n | head -1\`
 ## subsample each BAM to the MIN # of reads
 for line in \`cat $BAMLIST\`
 do
-echo $line
-NM=\`echo \$line | sed 's:.*/::'\`
-macs2 randsample -t \$line -o \$line.subSamp.bam -n $MIN 
+    NM=\`echo \$line | sed 's:.*/::'\`
+    macs2 randsample -t \$line -o \$line.subSamp.bam -n $MIN 
 ##
 EOF
 
