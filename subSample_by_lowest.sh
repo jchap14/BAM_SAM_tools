@@ -38,6 +38,8 @@ MIN=\`cat $NAME.lineCount | sort -n | head -1\`
 ## subsample each BAM to the MIN # of reads
 for line in \`cat $BAMLIST\`
 do
+echo $line
+NM=\`echo \$line | sed 's:.*/::'\`
 macs2 randsample -t \$line -o \$line.subSamp.bam -n $MIN 
 ##
 EOF
