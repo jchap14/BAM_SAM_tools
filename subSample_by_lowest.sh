@@ -30,7 +30,8 @@ touch $NAME.lineCount
 ## count the # of alignments in each BAM
 for line in \`cat $BAMLIST\`
 do
-samtools view \$line | wc -l >> $NAME.lineCount 
+samtools flagstat \$line > flagstat.TEMP
+cat flagstat.TEMP | egrep "read1" | cut -f1 -d ' ' >> $NAME.lineCount 
 done
 ## find the BAM with the lowest # & set it as a variable
 MIN=\`cat $NAME.lineCount | sort -n | head -1\`
@@ -42,6 +43,6 @@ macs2 randsample -t \$line -o \$line.subSamp.bam -n $MIN
 EOF
 
 ## qsub then remove the tempscript
-qsub $NAME.tempscript.sh 
+# qsub $NAME.tempscript.sh 
 sleep 1
 # rm $NAME.tempscript.sh
