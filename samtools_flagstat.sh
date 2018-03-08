@@ -24,7 +24,7 @@ cat > $NAME.tempscript.sh << EOF
 #$ -pe shm 12
 
 ## get the flagstats
-samtools flagstat $BAMFILE > $NAME.flagstats.txt
+samtools flagstat $BAMFILE > $NAME.flagstats.qc
 
 EOF
 
