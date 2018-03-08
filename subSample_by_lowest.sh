@@ -39,7 +39,7 @@ MIN=\`cat $NAME.lineCount | sort -n | head -1\`
 for line in \`cat $BAMLIST\`
 do
     NM=\`echo \$line | sed 's:.*/::'\`
-    macs2 randsample -t \$line -o \$line.subSamp.bam -n $MIN 
+    macs2 randsample -t \$line -o \$NM.subSamp.bam -n \$MIN 
 ##
 EOF
 
