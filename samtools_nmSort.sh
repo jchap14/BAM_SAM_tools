@@ -4,7 +4,7 @@
 ## for x in `find . -name "*.bam" -not -name "*.yst.bam"` ; do bash samtools_nmSort.sh $x; done
 
 ##### load required modules
-module add samtools
+# samtools in conda environment
 
 ##### set variables
 BAMFILE=`echo $1`

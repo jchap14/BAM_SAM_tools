@@ -25,7 +25,7 @@ cat > $NAME.tempscript.sh << EOF
 
 ########## Commands
 ## merge BAMs
-samtools merge -b $BAMLIST $NAME.avgSubSamp.bam
+samtools merge -b $BAMLIST -n $NAME.avgSubSamp.bam
 ##
 EOF
 
