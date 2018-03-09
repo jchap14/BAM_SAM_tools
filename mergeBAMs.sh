@@ -1,5 +1,5 @@
 #!/bin/bash
-##### Generate BAM files with equal number of reads in each
+##### merge BAM files
 
 ##### bash mergeBAMs.sh $BAMLIST
 
@@ -25,7 +25,7 @@ cat > $NAME.tempscript.sh << EOF
 
 ########## Commands
 ## merge BAMs
-samtools merge -b $BAMLIST -n $NAME.avgSubSamp.bam
+samtools merge --threads 12 -b $BAMLIST -n $NAME.merged.bam
 ##
 EOF
 

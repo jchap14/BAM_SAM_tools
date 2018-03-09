@@ -45,7 +45,7 @@ echo "subsample each BAM to the MIN # of reads"
 for line in \`cat $BAMLIST\`
 do
     NM=\`echo \$line | sed 's:.*/::'\`
-    macs2 randsample -t \$line -o \$NM.subSamp.bam -n \$MIN 
+    macs2 randsample -t \$line -o \$NM.subSamp.bed -n \$MIN 
 done
 ##
 EOF

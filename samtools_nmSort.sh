@@ -23,7 +23,7 @@ cat > $NAME.tempscript.sh << EOF
 #$ -pe shm 12
 
 ##################	sort BAMs by name
-samtools sort -n $BAMFILE > $NAME.nmSort.bam
+samtools sort --threads 12 -n $BAMFILE > $NAME.nmSort.bam
 EOF
 
 ## submit tempscript & cleanup
