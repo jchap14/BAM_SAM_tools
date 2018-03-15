@@ -29,7 +29,7 @@ samtools view -F 1804 -f 2 -b $NAME.dupmark.bam > $NAME.nodup.bam
 sambamba index -t 12 $NAME.nodup.bam
 sambamba flagstat -t 12 $NAME.nodup.bam > $NAME.nodup.flagstat.qc
 ## sort the nodup BAMs by name
-samtools sort -n $BAMFILE > $NAME.nmSort.bam
+samtools sort -n $NAME.nodup.bam > $NAME.nmSort.bam
 ## remove intermediate files
 #rm -f
 EOF
