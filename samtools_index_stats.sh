@@ -7,12 +7,10 @@
 ##### NOTE: flagstat #'s are for single end reads & include secondary mappings
 
 ##### load required modules
-module add rseqc
 
 ##### set variables
 BAMFILE=`echo $1`
-NAME=`basename $BAMFILE .Aligned.sortedByCoord.out.bam`
-# NAME=`basename $BAMFILE .bam`
+NAME=`basename $BAMFILE .bam`
 annoDir="/srv/gsfs0/projects/snyder/chappell/Annotations/GENCODE-v19-GRCh37-hg19"
 
 ##### create a tempscript for queue sub
@@ -26,13 +24,14 @@ cat > $NAME.tempscript.sh << EOF
 #$ -pe shm 12
 
 ## index the BAM
-samtools index $BAMFILE
+samtools sort --threads 12 $BAMFILE > $NAME.coordSort.bam
+samtools index $NAME.coordSort.bam
 
 ## get the total number of alignments
-samtools flagstat $BAMFILE > $NAME.flagstats.txt
+samtools flagstat $NAME.coordSort.bam > $NAME.flagstats.txt
 
 ## get the total number of alignments to chrM
-samtools idxstats $BAMFILE > $NAME.idx_stats.txt
+samtools idxstats $NAME.coordSort.bam > $NAME.idx_stats.txt
 
 ## join the stats into "bam_stats.txt"
 echo $BAMFILE >> BAMstats.txt
