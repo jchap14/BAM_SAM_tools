@@ -1,12 +1,12 @@
 #!/bin/bash
 
 ##### Submit this script for CUT&RUN
-## for x in `find . -name "*.bam" -not -name "*.yst.bam"` ; do bash samtools_index_stats.CnR.sh $x; done
+## for x in `find . -name "*.nmSort.bam"` ; do bash samtools_index_stats.sh $x; done
+## for x in `find . -name "*.bam" -not -name "*.yst.bam"` ; do bash samtools_index_stats.sh $x; done
 
 ##### NOTE: flagstat #'s are for single end reads & include secondary mappings
 
 ##### load required modules
-module add samtools
 module add rseqc
 
 ##### set variables
@@ -40,12 +40,8 @@ cat $NAME.flagstats.txt | egrep "total" >> BAMstats.txt
 cat $NAME.idx_stats.txt | egrep "chrM"  >> BAMstats.txt
 
 ## remove the extra files
-rm $NAME.flagstats.txt $NAME.idx_stats.txt
+# rm $NAME.flagstats.txt $NAME.idx_stats.txt
 
-## run split_bam.py to determine rRNA alignments in BAM
-# echo "STARTING split_bam.py" 
-# split_bam.py -i $BAMFILE -r $annoDir/hg19_rRNA.bed -o $NAME
-# rm $NAME.junk.bam $NAME.ex.bam $NAME.in.bam
 EOF
 
 ## submit tempscript & cleanup
