@@ -39,7 +39,7 @@ cat $NAME.flagstats.txt | egrep "total" >> BAMstats.txt
 cat $NAME.idx_stats.txt | egrep "chrM"  >> BAMstats.txt
 
 ## remove the extra files
-# rm $NAME.flagstats.txt $NAME.idx_stats.txt
+rm $NAME.flagstats.txt $NAME.idx_stats.txt
 
 EOF
 
