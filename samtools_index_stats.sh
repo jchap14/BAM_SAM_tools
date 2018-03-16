@@ -20,7 +20,7 @@ cat > $NAME.tempscript.sh << EOF
 #$ -j y
 #$ -V
 #$ -cwd
-#$ -l h_vmem=1G
+#$ -l h_vmem=4G
 #$ -pe shm 12
 
 ## index the BAM
