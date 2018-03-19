@@ -36,10 +36,11 @@ samtools idxstats $NAME.coordSort.bam > $NAME.idx_stats.txt
 ## join the stats into "bam_stats.txt"
 echo $BAMFILE >> BAMstats.txt
 cat $NAME.flagstats.txt | egrep "total" >> BAMstats.txt
+cat $NAME.flagstats.txt | egrep "duplicates" >> BAMstats.txt
 cat $NAME.idx_stats.txt | egrep "chrM"  >> BAMstats.txt
 
 ## remove the extra files
-rm $NAME.flagstats.txt $NAME.idx_stats.txt
+rm $NAME.flagstats.txt $NAME.idx_stats.txt $NAME.coordSort.bam
 
 EOF
 

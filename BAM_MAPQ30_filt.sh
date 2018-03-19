@@ -4,7 +4,7 @@
 ## for x in `find . -name "*.bam" -not -name "*.yst.bam"` ; do bash BAM_MAPQ30_filt.sh $x; done
 
 ##### load required modules
-module add samtools
+# samtools is in conda environment
 module add sambamba
 
 ##### set variables
