@@ -5,8 +5,8 @@
 
 ## $BAMLIST = a newline separated textfile of BAMs (subsampled to equal read #)
 
-## add modules
-module add MACS2
+## add modules or activate environments
+source activate aquas_chipseq
 
 ## define variables
 BAMLIST=`echo $1`
@@ -14,15 +14,21 @@ NAME=`basename $BAMLIST .BAMlist`
 
 ## write a tempscript to be looped over
 cat > $NAME.tempscript.sh << EOF
-#!/bin/bash
-#$ -N $NAME.subSampBAM
-#$ -j y
-#$ -cwd
-#$ -V
-#$ -l h_vmem=1G
-#$ -pe shm 12
-#$ -l h_rt=5:59:00
-#$ -l s_rt=5:59:00
+#!/bin/bash -l
+#SBATCH --job-name $NAME.subSampBAM
+#SBATCH --output=$NAME.subSampBAM.out
+#SBATCH --mail-user jchap14@stanford.edu
+#SBATCH --mail-type=ALL
+# Request run time & memory
+#SBATCH --time=5:59:00
+#SBATCH --mem=1G
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=12
+#SBATCH --export=ALL
+#SBATCH --account=mpsnyder
+
+## add modules or activate environments
+source activate aquas_chipseq
 
 ########## Commands
 ## create an empty file called $NAME.lineCount
@@ -51,6 +57,6 @@ done
 EOF
 
 ## qsub then remove the tempscript
-qsub $NAME.tempscript.sh 
+sbatch $NAME.tempscript.sh 
 sleep 1
 # rm $NAME.tempscript.sh
