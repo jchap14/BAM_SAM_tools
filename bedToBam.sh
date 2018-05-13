@@ -10,7 +10,7 @@ source activate aquas_chipseq
 ## define variables
 BEDFILE=`echo $1`
 NAME=`basename $BEDFILE .bed`
-GENOME="/srv/gsfs0/projects/snyder/chappell/Annotations/UCSC-hg19/WholeGenomeFasta/genome.fa"
+GENOME="/srv/gsfs0/projects/snyder/chappell/Annotations/UCSC-hg19/hg19.chrom.sizes"
 
 ## write a tempscript to be looped over
 cat > $NAME.tempscript.sh << EOF
