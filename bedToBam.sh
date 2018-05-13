@@ -2,7 +2,7 @@
 ##### Convert BED to BAM
 
 ##### submit for all samples in CWD
-# for x in `/bin/ls *.bed` ; do bash bedToBam.sh $x; done
+# for x in `find *.subSamp.bed` ; do bash bedToBam.sh $x; done
 
 ## add modules or activate environments
 source activate aquas_chipseq
