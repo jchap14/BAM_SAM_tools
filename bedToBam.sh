@@ -15,8 +15,8 @@ GENOME="/srv/gsfs0/projects/snyder/chappell/Annotations/UCSC-hg19/WholeGenomeFas
 ## write a tempscript to be looped over
 cat > $NAME.tempscript.sh << EOF
 #!/bin/bash -l
-#SBATCH --job-name $NAME.subSampBAM
-#SBATCH --output=$NAME.subSampBAM.out
+#SBATCH --job-name $NAME.bedToBam
+#SBATCH --output=$NAME.bedToBam.out
 #SBATCH --mail-user jchap14@stanford.edu
 #SBATCH --mail-type=ALL
 # Request run time & memory
