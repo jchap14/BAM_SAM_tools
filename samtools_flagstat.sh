@@ -15,20 +15,26 @@ annoDir="/srv/gsfs0/projects/snyder/chappell/Annotations/GENCODE-v19-GRCh37-hg19
 
 ##### create a tempscript for queue sub
 cat > $NAME.tempscript.sh << EOF
-#!/bin/bash
-#$ -N $NAME.flagstat
-#$ -j y
-#$ -V
-#$ -cwd
-#$ -l h_vmem=1G
-#$ -pe shm 12
+#!/bin/bash -l
+#SBATCH --job-name $NAME.coverage
+#SBATCH --output=$NAME.coverage.out
+#SBATCH --mail-user jchap14@stanford.edu
+#SBATCH --mail-type=ALL
+# Request run time & memory
+#SBATCH --time=5:00:00
+#SBATCH --mem=4G
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=12
+#SBATCH --export=ALL
+#SBATCH --account=mpsnyder
 
+##### Run commands:
 ## get the flagstats
 samtools flagstat $BAMFILE > $NAME.flagstats.qc
 
 EOF
 
-## submit tempscript & cleanup
-qsub $NAME.tempscript.sh
+## qsub then remove the tempscript
+sbatch $NAME.tempscript.sh #scg
 sleep 1
 rm $NAME.tempscript.sh

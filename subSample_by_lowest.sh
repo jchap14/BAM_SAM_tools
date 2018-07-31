@@ -59,4 +59,4 @@ EOF
 ## qsub then remove the tempscript
 sbatch $NAME.tempscript.sh 
 sleep 1
-# rm $NAME.tempscript.sh
+rm $NAME.tempscript.sh
