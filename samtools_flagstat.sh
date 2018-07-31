@@ -16,8 +16,8 @@ annoDir="/srv/gsfs0/projects/snyder/chappell/Annotations/GENCODE-v19-GRCh37-hg19
 ##### create a tempscript for queue sub
 cat > $NAME.tempscript.sh << EOF
 #!/bin/bash -l
-#SBATCH --job-name $NAME.coverage
-#SBATCH --output=$NAME.coverage.out
+#SBATCH --job-name $NAME.flagstat
+#SBATCH --output=$NAME.flagstat.out
 #SBATCH --mail-user jchap14@stanford.edu
 #SBATCH --mail-type=ALL
 # Request run time & memory
@@ -38,3 +38,10 @@ EOF
 sbatch $NAME.tempscript.sh #scg
 sleep 1
 rm $NAME.tempscript.sh
+
+##### Extra commands to grab stats from all flagstat files (run interactive)
+# for x in `find *.flagstats.qc`
+# do
+#     echo $x > $x.txt
+#     cat $x | grep -e "total" -e "duplicates" -e "mapped" >> $x.txt
+# done
